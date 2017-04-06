@@ -1,0 +1,57 @@
+<nav>
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo">Logo</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a routerLink="/home">Home</a></li>
+      <li><a routerLink="/home/addEmployee">Add employee</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+    <label>Set items per page</label>
+    <select (ngModel)="pagination.itemsPerPage" class="browser-default">
+      <option *ngFor="let perPage of pagination.itemsPerPages" [ngValue]="perPage">{{perPage}}</option>
+    </select>
+  <table class="striped centered">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>eMail</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employees.slice(pagination.currentPage * pagination.itemsPerPage, (pagination.currentPage + 1) * pagination.itemsPerPage)">
+        <td>{{employee.fname}}</td>
+        <td>{{employee.lname}}</td>
+        <td>{{employee.email}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <ul class="pagination center">
+    <li class="waves-effect">
+      <a href="javascript:;" (click)="setPage(0)">
+        <i class="material-icons">first_page</i>
+      </a>
+    </li>
+    <li class="waves-effect" *ngIf="pagination.currentPage != 0">
+      <a href="javascript:;" (click)="setPage(pagination.currentPage - 1)">
+        <i class="material-icons">chevron_left</i>
+      </a>
+    </li>
+    <li class="waves-effect" [ngClass]="{'active' : pagination.currentPage == page}" *ngFor="let page of pagination.pages">
+      <a href="javascript:;" (click)="setPage(page)">{{page + 1}}</a>
+    </li>
+    <li class="waves-effect" *ngIf="pagination.currentPage != pagination.totalPages - 1">
+      <a href="javascript:;" (click)="setPage(pagination.currentPage + 1)">
+        <i class="material-icons">chevron_right</i>
+      </a>
+    </li>
+    <li class="waves-effect">
+      <a href="javascript:;" (click)="setPage(pagination.totalPages - 1)">
+        <i class="material-icons">last_page</i>
+      </a>
+    </li>
+  </ul>
+</div>
