@@ -1,0 +1,23 @@
+<li class="waves-effect">
+  <a href="javascript:;" (click)="setCurrentPage(0)">
+    <i class="material-icons">first_page</i>
+  </a>
+</li>
+<li class="waves-effect" *ngIf="currentPage != 0">
+  <a href="javascript:;" (click)="setCurrentPage(pagination.currentPage - 1)">
+    <i class="material-icons">chevron_left</i>
+  </a>
+</li>
+<li class="waves-effect" [ngClass]="{'active' : pagination.currentPage == page}" *ngFor="let page of pagination.pages">
+  <a href="javascript:;" (click)="setCurrentPage(page)" [innerHTML]="page + 1"></a>
+</li>
+<li class="waves-effect" *ngIf="pagination.currentPage != pagination.totalPages - 1">
+  <a href="javascript:;" (click)="setCurrentPage(pagination.currentPage + 1)">
+    <i class="material-icons">chevron_right</i>
+  </a>
+</li>
+<li class="waves-effect">
+  <a href="javascript:;" (click)="setCurrentPage(pagination.totalPages - 1)">
+    <i class="material-icons">last_page</i>
+  </a>
+</li>

@@ -2,17 +2,23 @@ import { Injectable } from '@angular/core';
 
 import { Headers } from '@angular/http';
 
+export interface User {
+  username:string;
+}
+
 @Injectable()
 export class SharedService {
 
-  private username:string;
+  user:User = {
+    username: ''
+  };
 
-  get():string {
-    return this.username;
-  }
+  /*get():User {
+    return this.user;
+  }*/
 
   set(username:string) {
-    this.username = username;
+    this.user.username = username;
   }
 
 }

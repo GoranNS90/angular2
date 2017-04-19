@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <form class="col m8 offset-m2" [formGroup]="employeeForm" (ngSubmit)="addEmployee(employeeForm.value)">
+      <div class="row">
+        <div class="input-field col m12">
+          <input formControlName="fname" type="text" class="validate">
+          <label>First Name</label>
+        </div>
+        <div class="input-field col m12">
+          <input formControlName="lname" type="text" class="validate">
+          <label>Last Name</label>
+        </div>
+        <div class="input-field col m12">
+          <input formControlName="email" type="text" class="validate">
+          <label>Email</label>
+        </div>
+        <div class="col m12">
+          <div class="right-align">
+            <button type="submit" class="btn btn-large waves-effect waves-light">ADD</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { UserService } from './user.service';
-import { SharedService } from '../shared/shared.service';
+import { UserService } from '../shared/user.service';
+import { SharedService } from '../../shared/shared.service';
 
 @Component({
   selector: 'login-user',
@@ -24,7 +24,7 @@ export class LoginUserComponent {
     this.userService.login(user).subscribe(response => {
       if (response.username) {
         this.sharedService.set(response.username);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/employee/list']);
       }
     },
     error => {

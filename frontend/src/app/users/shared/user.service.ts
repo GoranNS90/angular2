@@ -5,17 +5,27 @@ import { Observable, Subscription } from "rxjs";
 
 @Injectable()
 export class UserService {
+
   private data: any;
+
   constructor(private http:Http) { }
 
   login(user):Observable<any> {
     let headers = new Headers();
-    headers.append('Authorization', 'Basic ' + btoa(user.username + ':' + user.password ));
+    if (user) {
+      headers.append('Authorization', 'Basic ' + btoa(user.username + ':' + user.password ));
+    }
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
     headers.append('X-Requested-With', 'XMLHttpRequest');
     return this.http.get('/user/getUser', { headers : headers })
       .map((res:Response) => res.json())
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  logout():Observable<any> {
+    return this.http.post('/user/logout', {})
+      .map((res:Response) => res)
+      .catch((error:any) => Observable.throw(error || 'Server error'));
   }
 
 }
